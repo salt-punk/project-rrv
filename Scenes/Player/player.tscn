@@ -1,12 +1,41 @@
 [gd_scene format=3 uid="uid://dxq8rlx0tvaau"]
 
 [ext_resource type="Script" uid="uid://dk7pl2084wa2v" path="res://Scripts/Player/player_controller.gd" id="1_uvnfx"]
+[ext_resource type="Shader" uid="uid://drfptr3oq11b7" path="res://Scripts/CRT.gdshader" id="2_a3d8c"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a3d8c"]
+shader = ExtResource("2_a3d8c")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.1410000066975
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.3
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = true
+shader_parameter/pixelate_strength = 0.118000005605
+shader_parameter/pixelate_resolution = Vector2(640, 480)
+shader_parameter/roll = true
+shader_parameter/roll_speed = 1.165
+shader_parameter/roll_size = 10.1750004833125
+shader_parameter/roll_variation = 0.29600001080012
+shader_parameter/distort_intensity = 0.0210000009975
+shader_parameter/noise_opacity = 0.0710000033725
+shader_parameter/noise_speed = 5.475
+shader_parameter/static_noise_intensity = 0.0400000019
+shader_parameter/aberration = 0.015000048212499895
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 0.002000000095
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.255
+shader_parameter/vignette_opacity = 0.6010000285475
+
 [node name="Player" type="CharacterBody3D" unique_id=1675837953 groups=["Player"]]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 collision_layer = 2
 collision_mask = 13
+floor_max_angle = 1.0471976
 script = ExtResource("1_uvnfx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=722909073]
@@ -16,3 +45,12 @@ shape = SubResource("CapsuleShape3D_g4v7s")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.58822894, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=813217201]
+
+[node name="ColorRect" type="ColorRect" parent="Head/Camera3D" unique_id=558496986]
+material = SubResource("ShaderMaterial_a3d8c")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
