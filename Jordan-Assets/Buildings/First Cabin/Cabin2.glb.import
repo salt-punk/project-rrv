@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://x8bb71d5uu3a"
-path="res://.godot/imported/Cabin1.glb-8c7abb23ae6bfb100d158db402b0c87b.scn"
+uid="uid://ct17mg5f221ee"
+path="res://.godot/imported/Cabin2.glb-26b83702afd13382e3cacb1810853d68.scn"
 
 [deps]
 
-source_file="res://Jordan-Assets/Cabin1.glb"
-dest_files=["res://.godot/imported/Cabin1.glb-8c7abb23ae6bfb100d158db402b0c87b.scn"]
+source_file="res://Jordan-Assets/Buildings/First Cabin/Cabin2.glb"
+dest_files=["res://.godot/imported/Cabin2.glb-26b83702afd13382e3cacb1810853d68.scn"]
 
 [params]
 

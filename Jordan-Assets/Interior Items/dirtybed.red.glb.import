@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cd6i6hmi3kint"
-path="res://.godot/imported/Cabin2.glb-57555a2866b62f52ec709d540e292dc6.scn"
+uid="uid://cgn4lcfyir2s8"
+path="res://.godot/imported/dirtybed.red.glb-efda0c3a8e992996f2f654446999c9a7.scn"
 
 [deps]
 
-source_file="res://Jordan-Assets/Cabin2.glb"
-dest_files=["res://.godot/imported/Cabin2.glb-57555a2866b62f52ec709d540e292dc6.scn"]
+source_file="res://Jordan-Assets/Interior Items/dirtybed.red.glb"
+dest_files=["res://.godot/imported/dirtybed.red.glb-efda0c3a8e992996f2f654446999c9a7.scn"]
 
 [params]
 
