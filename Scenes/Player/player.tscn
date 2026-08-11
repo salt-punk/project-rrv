@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dxq8rlx0tvaau"]
 
 [ext_resource type="Script" uid="uid://dk7pl2084wa2v" path="res://Scripts/Player/player_controller.gd" id="1_uvnfx"]
+[ext_resource type="PackedScene" uid="uid://c0f8vw6ia73pi" path="res://Scenes/UI/HUD.tscn" id="2_a3d8c"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
 
@@ -11,6 +12,8 @@ collision_mask = 13
 floor_max_angle = 1.0471976
 script = ExtResource("1_uvnfx")
 friction = 70.0
+bob_frequency = 0.15
+bob_vertical_amplitude = 0.03
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=722909073]
 shape = SubResource("CapsuleShape3D_g4v7s")
@@ -19,3 +22,5 @@ shape = SubResource("CapsuleShape3D_g4v7s")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.58822894, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=813217201]
+
+[node name="Hud" parent="." unique_id=645764815 instance=ExtResource("2_a3d8c")]
