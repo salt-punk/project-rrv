@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://dhj7ffgu17eqs"]
+
+[ext_resource type="Script" uid="uid://brse55otftlgq" path="res://Scripts/UI/inventory_grid.gd" id="1_x1wqn"]
+[ext_resource type="Script" uid="uid://cbove8rvc2d5o" path="res://Scripts/UI/inventory_item.gd" id="2_dmfah"]
+[ext_resource type="Texture2D" uid="uid://bqrrdy2aopioy" path="res://Placeholders/ItemAssets/Colt M1911.png" id="3_3moo6"]
+[ext_resource type="Texture2D" uid="uid://41teyalmhw77" path="res://Placeholders/ItemAssets/BAR.png" id="4_x643t"]
+[ext_resource type="Texture2D" uid="uid://cdpify1v1l2am" path="res://Placeholders/ItemAssets/Stick grenade.png" id="5_ojeqb"]
+
+[node name="InventoryGrid" type="GridContainer" unique_id=914893545]
+script = ExtResource("1_x1wqn")
+COLS = 7
+ROWS = 4
+
+[node name="ItemLayer" type="Control" parent="." unique_id=1451791585]
+layout_mode = 2
+
+[node name="Pistol" type="Control" parent="ItemLayer" unique_id=1614485917]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_dmfah")
+item_w = 2
+item_h = 2
+item_texture = ExtResource("3_3moo6")
+
+[node name="TextureRect" type="TextureRect" parent="ItemLayer/Pistol" unique_id=290614212]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Rifle" type="Control" parent="ItemLayer" unique_id=1843410429]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_dmfah")
+item_w = 4
+item_h = 2
+item_texture = ExtResource("4_x643t")
+
+[node name="TextureRect" type="TextureRect" parent="ItemLayer/Rifle" unique_id=70779614]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Grenade" type="Control" parent="ItemLayer" unique_id=452862341]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_dmfah")
+item_h = 2
+item_texture = ExtResource("5_ojeqb")
+
+[node name="TextureRect" type="TextureRect" parent="ItemLayer/Grenade" unique_id=899895844]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

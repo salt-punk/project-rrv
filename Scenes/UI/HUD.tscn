@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://c0f8vw6ia73pi"]
+
+[ext_resource type="PackedScene" uid="uid://dhj7ffgu17eqs" path="res://Scenes/UI/Inventory/inventory_grid.tscn" id="1_omqfp"]
+
+[node name="Hud" type="CanvasLayer" unique_id=645764815]
+
+[node name="InventoryGrid" parent="." unique_id=914893545 instance=ExtResource("1_omqfp")]

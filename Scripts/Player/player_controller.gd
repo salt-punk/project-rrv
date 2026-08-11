@@ -34,6 +34,13 @@ var pitch := 0.0
 @export var slide_friction := 18.0     # m/s^2 — gentler than normal friction, a Prey (2017)-style tactical slide
 @export var slide_buffer_time := 0.2   # seconds a mid-air crouch press is remembered for, so landing still slides
 
+@export_group("Head Bob")
+@export var bob_frequency := 0.25          # bob cycles per second, per m/s of horizontal speed
+@export var bob_vertical_amplitude := 0.06    # meters
+@export var bob_horizontal_amplitude := 0.03  # meters
+@export var bob_crouch_multiplier := 0.5   # dampens bob amplitude while crouched, on top of the natural slowdown from crouch_speed
+@export var bob_fade_speed := 8.0          # how quickly the bob eases in/out when you start/stop moving
+
 var is_crouching := false
 var is_sprinting := false
 var is_sliding := false
@@ -41,10 +48,15 @@ var slide_buffer_remaining := 0.0
 var crouch_amount := 0.0
 var stand_head_y: float
 
+var bob_timer := 0.0
+var bob_amount := 0.0
+var camera_base_position: Vector3
+
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	stand_head_y = head.position.y
+	camera_base_position = camera.position
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -123,6 +135,7 @@ func _physics_process(delta: float) -> void:
 			velocity.z = move_toward(velocity.z, 0, friction_rate * delta)
 
 	move_and_slide()
+	_update_head_bob(delta)
 
 
 ## Kicks off a slide if moving fast enough while sprinting; returns false
@@ -148,3 +161,21 @@ func _update_crouch(delta: float) -> void:
 	capsule.height = lerp(stand_height, crouch_height, crouch_amount)
 	collision_shape.position.y = lerp(0.0, (crouch_height - stand_height) / 2.0, crouch_amount)
 	head.position.y = lerp(stand_head_y, stand_head_y - (stand_height - crouch_height), crouch_amount)
+
+
+## Bobs the camera based on horizontal movement speed, so walking, sprinting, and
+## crouching each produce a naturally different bob cadence (faster/wider when
+## sprinting, slower when crouch-walking) without needing separate per-state logic.
+func _update_head_bob(delta: float) -> void:
+	var horizontal_speed := Vector2(velocity.x, velocity.z).length()
+	var is_moving := is_on_floor() and not is_sliding and horizontal_speed > 0.2
+
+	bob_amount = move_toward(bob_amount, 1.0 if is_moving else 0.0, bob_fade_speed * delta)
+	if is_moving:
+		bob_timer += delta * horizontal_speed * bob_frequency
+
+	var amplitude_scale: float = bob_amount * lerp(1.0, bob_crouch_multiplier, crouch_amount)
+	var phase := bob_timer * TAU
+	var vertical := sin(phase * 2.0) * bob_vertical_amplitude * amplitude_scale
+	var horizontal := sin(phase) * bob_horizontal_amplitude * amplitude_scale
+	camera.position = camera_base_position + Vector3(horizontal, vertical, 0.0)
